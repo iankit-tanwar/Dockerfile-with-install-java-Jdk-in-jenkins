@@ -1,0 +1,31 @@
+Dockerfile 
+
+FROM ubuntu:latest
+
+# Install necessary packages
+# Install Java JDK
+RUN apt-get update && \
+    apt-get install -y systemd systemd-sysv openjdk-17-jre-headless wget gnupg2 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Enable systemd init system
+CMD ["/sbin/init"]
+
+
+step1 docker build -t <imageName:tagname> .
+step2 docker run --privileged -it -p 8080:8080 --name <containerName> <imageName:tagname>
+step3 docker exec -it bf2477858373 bin/bash
+step4 apt-get install wget gnupg2
+step5 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
+step6 sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+step7 apt-get update
+step8 apt-get install openjdk-17-jre-headless wget gnupg2 jenkins
+step9 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
+step10 apt-get update
+step11 apt-get install jenkins
+step12 systemctl start jenkins
+step13 systemctl enable jenkins
+step14 http://localhost:8080
+step15 cat /var/lib/jenkins/secrets/initialAdminPassword
